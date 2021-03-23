@@ -1,0 +1,65 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>  
+            body
+            {    background-image: url('https://images.pexels.com/photos/1260727/pexels-photo-1260727.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+                font-family: 'Copperplate Gothic','Helvetica' ,'sans-serif';   
+            }
+            input[type=text],input[type=cardnumber], input[type=password],textarea{
+                width: 20%;
+                padding: 12px 20px;
+                margin: 25px 500px;
+                display: block;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                border: 1px solid black;
+                box-sizing: border-box;
+                box-align: center;
+            }    
+            input[type='psw']:focus , input[type='cardnumber']:focus { 
+                background-color: lightskyblue;
+            }   
+            .loginbtn {  
+                background-color: blue;  
+                color: white;  
+                padding: 16px 20px;  
+                margin: 8px 0;  
+                border: none;  
+                cursor: pointer;  
+                width: 10%;  
+                opacity: 0.9;  
+                border-radius:20px;
+            }
+        </style>
+        <title>LOGIN PAGE</title>
+        </head>
+        <body class="bg">
+        
+            <div id="Container">
+            <form action="" method="POST" >
+                    {% csrf_token %}
+                <h1> <p style="text-align:center;">LOGIN</p></h1>
+                <p style=text-align:center; <label for="cardnumber"><b>Card Number</b></label>
+                    <input type="text" name="cardnumber" placeholder="Enter your cardnumber" required></p>
+                <p style=text-align:center; <label for="psw"><b>password</b></label>
+                    <input type="password" name="Password" placeholder="Enter your password" required></p>
+                <p style=text-align:center;><button type="submit" class="loginbtn">Login</button></p>
+                    <center>
+                <br>
+            <b>
+        {% for msg in messages %}
+         {{msg}}
+         {% endfor %}
+        </b>
+        </center>
+        <p style=text-align:center><a href="http://127.0.0.1:8000/accounts/publicregister"><b>Signup</b></a></p>
+        <p style=text-align:center><a href="password_reset"><b>Forgot Password</b></a></p>
+        <p style=text-align:center><a href="http://127.0.0.1:8000/admin"><b>Admin</b></a></p>
+        </form>
+        </div>
+    </body>
+    </html>

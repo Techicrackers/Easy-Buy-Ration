@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>  
+        body
+            {    background-color:gray;
+                font-family: 'Copperplate Gothic','Helvetica' ,'sans-serif'; 
+                 
+        }
+        table, th, td {  
+            border: 2px solid black;  
+            border-collapse: collapse;  
+        
+        }  
+        th, td {
+            padding: 50px;
+        }
+        #product th ,#transaction th
+        {
+            padding-top: 12px;
+            padding-bottom: 12px;
+            text-align: left;
+            background-color: lightslategray;
+            color:white;
+        }
+            #button , #total,#total1,#total2,#total3{
+                background-color: blue;  
+                padding: 16px 20px;  
+                margin: 8px 0;  
+                border: none;  
+                cursor: pointer;  
+                width: 10%;  
+                opacity: 0.9;
+                opacity: 1;
+                border-radius:8px;   
+                color:whitesmoke;
+                display: flex;
+                justify-content:center;
+                align-items: center;
+        }
+       
+        
+        #user ,#users ,#users1
+        {
+         font-family: "Copperplate Gothic"; 
+           
+        }
+        #oil,#rice,#sugar,#wheat,#kerosene,#dhall
+        {
+            width :30px;
+            height: 30px;
+        }
+        input[type=text], input[type=container], textarea {  
+            width: 70%;  
+            padding: 10px;  
+            margin: 5px 0 22px 0;  
+            display: inline-block;  
+            border: 1px solid black;
+            background:whitesmoke;
+            border-radius: 20px;  
+        }
+        
+    </style>  
+<title>Purchase</title>
+</head>
+<body class="bg">
+<center>
+    <div id="user">
+    <h1>PUBLIC PURCHASE</h1>
+</center>  
+
+<div id="users">
+    <p>WELCOME : {{user.name}}</p>
+    <p>Members present in the card:{{user.members}}</p>
+    <p>Time Allocation</p>
+   </div>
+  
+  
+<div class= "container">   
+    <input id="slot1"type ="date" min={{now}} name="day" required/>
+    <input id="slot2"type ="time" neme="timestamp" required/>
+    </div><br> 
+
+<center>
+    <table id="product">  
+    <tr><th><p style="font-size:30px">S.no</p></th><th><p style="font-size:30px">Products</p></th><th><p style="font-size:30px">Quantity</p></th><th><p style="font-size:30px">Price</p></th><th><p style="font-size:30px">Sales</p></tr> 
+    <tr> {% if user.cardtype == "yellow card" %}
+    <td><p style="font-size:25px">1</p></td><td><p style="font-size:25px">Rice</p></td><td><p style="font-size:25px">1</p></td><td><p style="font-size:25px">free</p></td><td><input type="checkbox"  id="rice" name="rice"onclick="rice()"></td>
+    {% endif %}</tr>
+    <tr><td><p style="font-size:25px">2</p></td>
+        <td><p style="font-size:25px">Oil</p></td>
+        <td><p style="font-size:25px">1</p></td>
+        <td><p style="font-size:25px">25</p></td>
+        <td><input type="checkbox" id="oil" name="oil" onclick="oil()"></td>
+    </tr>
+    <tr><td><p style="font-size:25px">3</p></td>
+        <td><p style="font-size:25px">Sugar</p></td>
+        <td><p style="font-size:25px">1</p></td>
+        <td><p style="font-size:25px">14</p></td>
+        <td><input type="checkbox" id="sugar" name="sugar" onclick="sugar()"></td></tr>
+    <tr><td><p style="font-size:25px">4</p></td>
+        <td><p style="font-size:25px">Dhall</p></td>
+        <td><p style="font-size:25px">1</p></td>
+        <td><p style="font-size:25px">30</p></td>
+        <td><input type="checkbox" id="dhall" name="dhall" onclick="dhall()"></td></tr>
+    <tr><td><p style="font-size:25px">5</p></td>
+        <td><p style="font-size:25px">kerosene</p></td>
+        <p style="font-size:25px"><td><p style="font-size:25px">1</p></td>
+        <td><p style="font-size:25px">14</p></td>
+        <td><input type="checkbox" id="kerosene" name="kerosene"onclick="kerosene()"></td></tr> 
+    <tr><td><p style="font-size:25px">6</p></td>
+        <td><p style="font-size:25px">Wheat</p></td>
+        <td><p style="font-size:25px">1</p></td>
+        <td><p style="font-size:25px">8</p></td>
+        <td><input type="checkbox" id="wheat" name="Wheat"onclick="wheat()"></td></tr> 
+    </table> 
+</center><br>	
+    <center>
+    <button id="total" name="total" onclick="total()">Total</button> 
+    <p id="displaytotal1"></p>
+</center>
+    <br>
+
+
+<label>
+
+</label><br>
+
+<form action="../accounts/publicpurchase" method="post">
+    {% csrf_token %}  
+<center><h1>PAYMENT</h1></center> 
+    <div id="container">  
+        <b><label>Name:</label></b>
+        <br>
+        <input type="text" name="customername" placeholder= "Name" size="15" required />   
+        <br>
+        <b><label>Select Bank: </label></b>
+        <br>
+    <select> 
+        <option value="icici">icici bank</option>  
+        <option value="kvb">Kvb Bank</option> 
+        <option value="bob">Bank of Baroda</option>  
+        <option value="indian">indian bank</option>
+        <option value="iob">indian overseas bank</option>
+    </select>
+    <br> 
+    <b><label>Card Number:</label></b> 
+    <br>
+        <input type="text" name="card no" placeholder="card number" size="16"required />
+        <br> 
+        <b><label>Cvv:</label></b> 
+        <br>
+        <input type="text" name="cvv" placeholder="cvv" size="3"required /> 
+        <br>
+        <b><label>Amount:</label></b>
+        <p id="displaytotal2"></p>
+        <b><label>Transaction id:</label></b>
+        <p id ="key"value=0></p>
+    </div>
+    
+        <input id="s1"type="hidden" value=0 name="trancid"/>
+        <input id="s2"type="hidden" value="" name="finaldate"/>
+        <input id="s3"type="hidden" value="" name="finaltime"/>
+        <input id="s4"type="hidden" value=0  name="finalamount"/>
+        <input type="hidden" value={{user.cardnumber}}  name="cardno"/>
+
+        <label>
+
+        <center>
+            <button id="total3" name="total3" type="submit">PAY</button> 
+        </center>
+    </form>
+</label><br>
+<center>
+    <div id= "users1">
+        <h2>TRANSACTION HISTORY</h2>
+    </div>    
+    <table id ="transaction">
+        <tr><th>Name</th> 
+            <th>Transactionid</th> 
+            <th>Date</th><th>Time</th>
+            <th>Amount</th>
+        </tr>
+        {% for t in tran %}
+        <tr><td><p>{{t.name}}</p></td>
+            <td><p>{{t.transactionid}}</p>
+            </td><td><p>{{t.date}}</p></td>
+            <td><p>{{t.time}}</p></td>
+            <td><p>{{t.amount}}</p></td>
+        </tr>
+        {% endfor %}
+    </table>
+</center><br>
+    
+
+    <center>
+    <button id="total2" name="total2" onclick="final()">FINAL PAYMENT</button> 
+</center>
+<p style=text-align:center><a href="http://127.0.0.1:8000/accounts/publiclogin"><b>Logout</b></a></p>
+</body>
+</html> 
+<script>
+    var res=0;
+    function total(){
+        document.getElementById("displaytotal1").innerHTML=res;
+        document.getElementById("displaytotal2").innerHTML=res;
+        document.getElementById("s4").value=res;
+        myFunction()
+    }
+        function rice(){
+        var rice = document.getElementById('rice');
+        if(rice.checked == true)
+        res+=0;
+        }
+        function oil(){
+        var oil = document.getElementById('oil');
+        if(oil.checked == true)
+        res+=25;
+        else
+        res-=25;
+        }
+        function sugar()
+        {
+        var sugar = document.getElementById('sugar');
+        if(sugar.checked == true)
+        res+=14;
+        else
+        res-=14;
+        }
+        function dhall()
+        {
+        var dhall = document.getElementById('dhall');
+        if(dhall.checked == true)
+        res+=30;
+        else
+        res-=30;
+        }
+        function kerosene()
+        {
+        var kerosene = document.getElementById('kerosene');
+        if(kerosene.checked == true)
+        res+=14;
+        else
+        res-=14;
+        }
+        function wheat()
+        {
+        var wheat = document.getElementById('wheat');
+        if(wheat.checked == true)
+        res+=08;
+        else
+        res-=08;
+        }  
+        
+        function myFunction()
+        {
+          document.getElementById("key").value= Math.floor(Math.random()*10000)+1;
+          document.getElementById("s1").value=document.getElementById("key").value;
+          document.getElementById("key").innerHTML= Math.floor(Math.random()*10000)+1;
+          document.getElementById("s2").value=document.getElementById("slot1").value;
+          document.getElementById("s3").value=document.getElementById("slot2").value;
+          }
+        function final(){
+          alert("payed successfully")
+          window.location = "publicpurchase";
+        }
+        function submitdetails(){
+            $.ajax({
+                url:"accounts/finalpurchase",
+                method:'POST',
+                dataType:'json',
+                data:{"customername":document.getElementById('payid').value,
+                "trancid":document.getElementById('s1').value,
+                "finaldate":document.getElementById('s2').value,
+                "finaltime":document.getElementById('s3').value,
+                "finalamount":document.getElementById('s4').value
+              },
+              success:function callback(response){
+                  alert('paid')
+              }
+            })
+        }
+</script>

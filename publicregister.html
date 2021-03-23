@@ -1,0 +1,119 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<style>  
+body{  
+  font-family: 'Copperplate Gothic', 'Helvetic', 'sans-serif';  
+  background-color:white; 
+  background-image: url('https://images.pexels.com/photos/1260727/pexels-photo-1260727.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940'); 
+}  
+.container {  
+    padding: 30px;  
+  background-color:smoke whitesmoke;  
+}  
+  
+input[type=text], input[type=password], textarea {  
+  width: 100%;  
+  padding: 15px;  
+  margin: 5px 0 22px 0;  
+  display: inline-block;  
+  border: 1px solid black;
+  background:whitesmoke;
+  border-radius: 20px;  
+}  
+input[type=text]:focus, input[type=password]:focus {  
+  background-color: lightskyblue; 
+  outline: none;  
+}  
+ div {  
+            padding: 10px 0;  
+         }  
+hr {  
+  border: 1px solid #f1f1f1;  
+  margin-bottom: 25px;  
+}  
+.registerbtn {  
+  background-color: blue;  
+  color: white;  
+  padding: 16px 20px;  
+  margin: 8px 0;  
+  border: none;  
+  cursor: pointer;  
+  width: 20%;  
+  opacity: 0.9; 
+  border-radius: 20px; 
+  
+}  
+.registerbtn:hover {  
+  opacity: 1;  
+}  
+</style>  
+</head>  
+<body>  
+<form action="" method="post">  
+{% csrf_token %}
+{% for msg in messages %}
+<h3>{{msg}}</h3>
+{% endfor %}
+<div class="container">  
+<center><h1>Public Registeration Form</h1></center>  
+<hr>  
+<b><label> Name </label> <b>  
+<input type="text" name="Name" placeholder= "name" size="15" required />   
+<b><label> Date of birth: </label> </b>  
+<input type="text" name="Date_of_birth" placeholder="date of birth" size="15" required />   
+<b><label> Aadhaar number: </label></b>
+<input type="text" name="Aadhar_number" placeholder="aadhaar" size="15" required /> 
+<div>  
+<label>   
+</b>gender : </b> 
+</label>   
+<select name="Gender">  
+<option value="male">Male</option>  
+<option value="Female">Female</option> 
+<option value="Others">Others</option>  
+</select>  
+</div> 
+<div><b>  
+<label>   
+Card type :</b>  
+</label>   
+  
+<select name="Card_type">  
+<option value="white card">white card</option>  
+<option value="yellow card">yellow card</option> 
+  
+</select>  
+</div>   
+
+<label>   
+<b>Phone :</b>  
+</label>  
+   
+<input type="text" name="Phone" placeholder="phone no." size="10" required>  
+<label> 
+<b>Card number :</b> 
+</label> 
+<input type="text" name="Card_number" placeholder="card no." size="12" required>
+
+ <label for="email"><b>Email</b></label>  
+ <input type="text" placeholder="Enter Email" name="Mailid" required>  
+ 
+ <label for="members"><b>Members present in card</b></label>  
+ <input type="text" placeholder="membersname" name="family" required> 
+  
+    <label for="psw"><b>Password</b></label>  
+    <input type="password" placeholder="Enter Password" name="Password" required>  
+  
+    <label for="psw-repeat"><b>Re-type Password</b></label>  
+    <input type="password" placeholder="Retype Password" name="Password-repeat" required> 
+    <p style=text-align:right> 
+    <button type="submit" class="registerbtn">Register</button></p>
+
+
+</form>  
+<p style=text-align:right> 
+  <button type="submit" class="registerbtn">Cancel</button></p>
+</body>  
+</html>  

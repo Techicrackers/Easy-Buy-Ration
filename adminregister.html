@@ -1,0 +1,99 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<style>  
+body{  
+  font-family: Calibri, Helvetica, sans-serif;  
+  background-color: pink;  
+}  
+.container {  
+    padding: 50px;  
+  background-color: lightblue;  
+}  
+  
+input[type=text], input[type=password], textarea {  
+  width: 100%;  
+  padding: 15px;  
+  margin: 5px 0 22px 0;  
+  display: inline-block;  
+  border: none;  
+  background: #f1f1f1;  
+}  
+input[type=text]:focus, input[type=password]:focus {  
+  background-color: orange;  
+  outline: none;  
+}  
+ div {  
+            padding: 10px 0;  
+         }  
+hr {  
+  border: 1px solid #f1f1f1;  
+  margin-bottom: 25px;  
+}  
+.registerbtn {  
+  background-color: #4CAF50;  
+  color: white;  
+  padding: 16px 20px;  
+  margin: 8px 0;  
+  border: none;  
+  cursor: pointer;  
+  width: 20%;  
+  opacity: 0.9;  
+  
+}  
+.registerbtn:hover {  
+  opacity: 1;  
+}  
+
+
+
+</style>  
+</head>  
+<body>  
+<form actiom="" method="post">  
+  {% csrf_token %}
+  <div class="container">  
+  <center>  <h1>Admin Registeration Form</h1> </center>  
+  <hr>  
+ <b> <label> Name </label> <b>  
+<input type="text" name="name" placeholder= "name" size="15" required />   
+   
+<b><label> Aadhaar number: </label>   </b> 
+<input type="text" name="aadhaar number" placeholder="aadhaar number" size="15"required />   
+<div>  
+<label>   
+</b>gender : </b> 
+</label>   
+  
+<select>  
+<option value="male">Male</option>  
+<option value="Female">Female</option> 
+<option value="Others">Others</option>  
+</select>  
+</div> 
+  
+
+<label>   
+<b>Phone :</b>  
+</label>  
+   
+<input type="text" name="phone" placeholder="phone no." size="10"/ required>  
+
+
+ <label for="email"><b>Email</b></label>  
+ <input type="text" placeholder="Enter Email" name="Email" required>  
+  
+    <label for="psw"><b>Password</b></label>  
+    <input type="password" placeholder="Enter Password" name="Password" required>  
+  
+    <label for="psw-repeat"><b>Re-type Password</b></label>  
+    <input type="password" placeholder="Retype Password" name="Password-repeat" required> 
+<p style=text-align:right> 
+    <button type="submit" class="registerbtn">Register</button></p>
+<p style=text-align:right> 
+    <button type="submit" class="registerbtn">Cancel</button></p>
+
+</form>  
+</body>  
+</html>  

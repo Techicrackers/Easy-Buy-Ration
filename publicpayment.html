@@ -1,0 +1,125 @@
+<!DOCTYPE html>  
+<html>  
+<head>  
+<meta name="viewport" content="width=device-width, initial-scale=1">  
+<title>publicpayment</title>
+<style>  
+body{  
+  font-family: Calibri, Helvetica, sans-serif;  
+  background-color: pink;  
+}  
+.container {  
+    padding: 50px;  
+  background-color: lightblue;  
+}  
+  
+input[type=text], input[type=password], textarea {  
+  width: 100%;  
+  padding: 15px;  
+  margin: 5px 0 22px 0;  
+  display: inline-block;  
+  border: none;  
+  background: #f1f1f1;  
+}  
+input[type=text]:focus, input[type=password]:focus {  
+  background-color: orange;  
+  outline: none;  
+}  
+ div {  
+            padding: 10px 0;  
+         }  
+hr {  
+  border: 1px solid #f1f1f1;  
+  margin-bottom: 25px;  
+}  
+.registerbtn {  
+  background-color: #4CAF50;  
+  color: white;  
+  padding: 16px 20px;  
+  margin: 8px 0;  
+  border: none;  
+  cursor: pointer;  
+  width: 20%;  
+  opacity: 0.9;  
+  
+}  
+.registerbtn:hover {  
+  opacity: 1;  
+}  
+
+  
+
+</style>  
+</head>  
+<body>  
+<form>  
+  <div class="container">  
+  <center>  <h1>Payment</h1> </center>  
+  <hr>  
+ <b> <label> Name </label> <b>  
+<input type="text" name="name" placeholder= "Name" size="15" required />  
+ <div>  
+<label>   
+</b>Select Bank: </b> 
+</label>   
+  
+<select>  
+<option value="icici">icici bank</option>  
+<option value="kvb">Kvb Bank</option> 
+<option value="bob">Bank of Baroda</option>  
+<option value="indian">indian bank</option>
+<option value="iob">indian overseas bank</option>
+</select>  
+</div> 
+   
+<b><label>Card Number: </label>   </b> 
+<input type="text" name="card no" placeholder="card number" size="16"required /> 
+<b><label>Cvv: </label>   </b> 
+<input type="text" name="cvv" placeholder="cvv" size="3"required /> 
+<b><label>Amount:</label></b>
+<p>{{money}} </p> 
+<b><label>Transaction id:</label></b>
+  <p id ="key"></p>
+  {{date}}
+  {{time}}
+<form action="../accounts/finalpurchase" method="post">
+  {% csrf_token %}
+  <input id="payid"type="hidden" value="0" name="customername"/>
+  <input id="s1"type="hidden" value=0 name="trancid"/>
+  <input id="s2"type="hidden" value="{{date}}" name="finaldate"/>
+  <input id="s3"type="hidden" value="{{time}}" name="finaltime"/>
+  <input id="s4"type="hidden" value="{{money}}" name="finalamount"/>
+ </form>
+ <button onclick="()=>{window.history.back();}">cancel</button>
+<button onclick="final()">final payment</button> 
+<button onclick="submitdetails()">ajax</button> 
+</body>  
+</html>  
+<script>
+  function myFunction()
+  {
+    document.getElementById("key").innerHTML = Math.floor(Math.random()*10000)+1;
+    document.getElementById("s1").value=document.getElementById("key").value;
+    }
+  function final(){
+    alert("payed successfully")
+    window.location = "publicpurchase";
+  }
+  function submitdetails(){
+      $.ajax({
+          url:"accounts/finalpurchase",
+          method:'POST',
+          dataType:'json',
+          data:{"customername":document.getElementById('payid').value,
+          "trancid":document.getElementById('s1').value,
+          "finaldate":document.getElementById('s2').value,
+          "finaltime":document.getElementById('s3').value,
+          "finalamount":document.getElementById('s4').value
+        },
+        success:function callback(response){
+            alert('paid')
+        }
+
+      })
+  }
+</script>
